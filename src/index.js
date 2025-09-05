@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "./index.css";
 
 const pizzaData = [
   {
@@ -48,11 +49,10 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
-      <h1>Hello React</h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
@@ -65,12 +65,67 @@ root.render(
   </React.StrictMode>
 );
 
-function Pizza() {
+function Header() {
   return (
-    <div>
-      <img src="pizzas/spinaci.jpg " alt="pizza spinaci" />
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+    <header className="header">
+      <h1
+
+      // style={{ color: "red", fontSize: "48px", textTransform: "uppercase" }}
+      >
+        Fast React Pizza Co.
+      </h1>
+    </header>
+  );
+}
+
+function Menu() {
+  return (
+    <main className="menu">
+      <h2>Our menu</h2>
+      <Pizza
+        name="Pizza Spinaci"
+        ingredient="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="Pizzas/spinaci.jpg"
+        price={10}
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredient="Tomato, mashhrooms"
+        photoName="Pizzas/funghi.jpg"
+        price={12}
+      />
+    </main>
+  );
+}
+
+function Pizza(props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.ingredient}</h3>
+        <p></p>
+        <spane>{props.price}</spane>
+      </div>
     </div>
   );
+}
+
+function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 8;
+  const closeHour = 22;
+
+  const isOpen = hour >= openHour <= closeHour;
+  console.log(isOpen);
+
+  //   if (hour >= openHour && hour <= closeHour) alert("We are currently open!");
+  //   else alert("Sorry we are closed ");
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()} We are currently open !{" "}
+    </footer>
+  );
+  //   return React.createElement("footer", null, "we're currently open!");
 }
