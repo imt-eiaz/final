@@ -94,6 +94,9 @@ function Menu() {
         photoName="Pizzas/funghi.jpg"
         price={12}
       />
+
+      <WelcomeMessage msg="Welcome message" />
+      <WelcomeMessage msg="Imtiaz" />
     </main>
   );
 }
@@ -108,6 +111,14 @@ function Pizza(props) {
         <p></p>
         <spane>{props.price}</spane>
       </div>
+    </div>
+  );
+}
+
+function WelcomeMessage(props) {
+  return (
+    <div>
+      <h2>{props.msg}</h2>
     </div>
   );
 }
